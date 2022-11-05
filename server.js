@@ -16,7 +16,8 @@ http.createServer((request, response) => {
   });
 
   if (q.pathname.includes('documentation')) {
-    filePath = (_dirname + '/documentation.html');
+    console.log(__dirname);
+    filePath = (__dirname + '/documentation.html');
   } else {
     filePath = 'index.html';
   }
