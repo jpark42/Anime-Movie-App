@@ -2,5 +2,24 @@
   "dependencies": {
     "body-parser": "^1.20.1",
     "express": "^4.18.2"
-  }
+  },
+  "name": "comedy-movie-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpark42/Comedy-Movie-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpark42/Comedy-Movie-App/issues"
+  },
+  "homepage": "https://github.com/jpark42/Comedy-Movie-App#readme",
+  "description": ""
 }
