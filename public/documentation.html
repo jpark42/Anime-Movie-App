@@ -7,6 +7,138 @@
     <body>
         <h1>Anime Movie API</h1>
         <p>This application will provide users the ability to access information about their favorite movies within the Anime genre. Users will also be able to create their own profile where they can create lists of their favorite Anime movies.</p>
+        <div>
+            <h2>Features</h2>
+            <ul>
+                <li>Return a list of all users</li>
+                <li>Return a list of ALL movies to the user</li>
+                <li>Return data (description, director, date of release, whether it's been featured, and image URL) about a single movie by title to the user</li>
+                <li>Return data about a genre (description) by name/title</li>
+                <li>Return data about director (bio, birth year, death year)</li>
+                <li>Allow new users to register</li>
+                <li>Allow users to update their user info</li>
+                <li>Allow users to add a movie to their list of favorites</li>
+                <li>Allow users to remove a movie from their list of favorites</li>
+                <li>Allow existing users to deregister.</li>
+            </ul>
+        </div>
+        <div>
+            <h2>API Endpoints</h2>
+            <table>
+                <thead>
+                   <tr>
+                       <th>Buisness Logic</th>
+                       <th>URL</th>
+                       <th>HTTP Method</th>
+                       <th>Query Parameters</th>
+                       <th>Request body data format</th>
+                       <th>Response body data format</th>
+                   </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Get all Users</td>
+                        <td>/users</td>
+                        <td>GET</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td> A JSON object holding data of all users</td>
+                    </tr>
+
+                    <tr>
+                        <td>Get a User by Username</td>
+                        <td>/users/:Username</td>
+                        <td>GET</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td> A JSON object holding data of a specific user</td>
+                    </tr>
+
+                   <tr>
+                       <td>Get a list of all movies</td>
+                       <td>/movies</td>
+                       <td>GET</td>
+                       <td>-</td>
+                       <td>-</td>
+                       <td>A JSON object holding data about all the movies</td>
+                   </tr>
+
+                   <tr>
+                       <td>Get a single movie by title</td>
+                       <td>/movies/:title</td>
+                       <td>GET</td>
+                       <td>:title</td>
+                       <td>-</td>
+                       <td>A JSON object holding data about a single movie</td>
+                   </tr>
+
+                   <tr>
+                        <td>Get Genre by Name</td>
+                        <td>/movies/genre/:genreName</td>
+                        <td>GET</td>
+                        <td>:genreName</td>
+                        <td>-</td>
+                        <td>A JSON object holding data about the genre of a movie</td>
+                    </tr>
+
+                   <tr>
+                       <td>Get director data by name</td>
+                       <td>/movies/directors/:directorName</td>
+                       <td>GET</td>
+                       <td>:directorName</td>
+                       <td>-</td>
+                       <td>A JSON object holding data about the data of a director</td>
+                   </tr>
+
+                   <tr>
+                       <td>Allow new users to register</td>
+                       <td>/users</td>
+                       <td>POST</td>
+                       <td>-</td>
+                       <td>A JSON object holding data about the users to add, structured like this { "Username": "String","Email": "String","Birthday": "Date"} </td>
+                       <td>A JSON object holding data about the user that was added, structured like this { "username" : "Test1", "Email": "test@gmail.com", "Birthday": "1996-12-12", "favorite movie" : [] } including an ID </td>
+                   </tr>
+
+                   <tr>
+                       <td>Allow users to update their user info</td>
+                       <td>/users/:Username</td>
+                       <td>PUT</td>
+                       <td>:Username</td>
+                       <td>-</td>
+                       <td>A JSON object holding data about the updated information</td>
+                   </tr>
+
+
+                   <tr>
+                       <td>Adds movie to favorite list</td>
+                       <td>/users/:Username/:movies/:moviesId</td>
+                       <td>POST</td>
+                       <td>:Username, MovieId</td>
+                       <td>-</td>
+                       <td>A text message indicating that the movie was successfully added to the user's favorited list</td>
+                   </tr>
+
+                   <tr>
+                       <td>Delete movie from favorite list</td>
+                       <td>/users/:Username/:movies/:movieId</td>
+                       <td>DELETE</td>
+                       <td>:Username, MovieId</td>
+                       <td>-</td>
+                       <td>A text message indicating that the movie was successfully removed from the user's favorited list</td>
+                   </tr>
+
+                   <tr>
+                       <td>Allow existing users to deregister</td>
+                       <td>/users/:Username</td>
+                       <td>DELETE</td>
+                       <td>:Username</td>
+                       <td>-</td>
+                       <td>A text message indicating that the user has deregistered</td>
+                   </tr>
+                </tbody>
+               </table>
+        </div>
     </body>
     <script src="test.js"></script>
     <script src="server.js"></script>
