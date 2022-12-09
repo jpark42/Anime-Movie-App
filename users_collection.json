@@ -1,0 +1,5 @@
+{"_id":{"$oid":"63897d2b031ec39641552a3f"},"Username":"jpark427","Password":"basketball123","Email":"johnnypark@gmail.com","Birthday":{"$date":"1996-11-27T00:00:00Z"},"FavoriteMovies":[{"$oid":"6389975f031ec39641552a3e"}]}
+{"_id":{"$oid":"63898176031ec39641552a40"},"Username":"zekeyeducation","Email":"zekethefreak@gmail.com","Password":"freakyzeke123","Birthday":{"$date":"1998-09-06T00:00:00Z"},"FavoriteMovies":[{"$oid":"6389698c031ec39641552a38"},{"$oid":"638966bd031ec39641552a37"}]}
+{"_id":{"$oid":"638a64fa031ec39641552a41"},"Username":"winscomrider","Email":"albinorider@gmail.com","Password":"albino123","Birthday":{"$date":"1997-03-15T00:00:00Z"},"FavoriteMovies":[{"$oid":"6389703c031ec39641552a3a"}]}
+{"_id":{"$oid":"638a6689031ec39641552a42"},"Username":"bodegamanager","Email":"bodegamanager@gmail.com","Password":"bodegacat123","Birthday":{"$date":"1997-05-15T00:00:00Z"},"FavoriteMovies":[{"$oid":"638971fe031ec39641552a3b"}]}
+{"_id":{"$oid":"638a67ce031ec39641552a43"},"Username":"sniperyuta","Email":"yutawatanabe@gmail.com","Password":"brooklyn123","Birthday":{"$date":"1997-05-15T00:00:00Z"},"FavoriteMovies":[{"$oid":"638973c9031ec39641552a3c"}]}

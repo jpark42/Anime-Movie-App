@@ -1,0 +1,187 @@
+{
+	"_id": {
+		"$oid": "63896143031ec39641552a35"
+	},
+	"Title": "Your Name",
+	"Description": "High-schoolers Mitsuha and Taki are complete Strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up in Taki's body, and he in hers. This bizarre occurrence continues to happen randomly, and the two must adjust their lives around each other.",
+	"Genre": {
+		"Name": "Romance",
+		"Description": "Romance drama typically refers to a fictional story that focuses on the romantic relationship of two characters."
+	},
+	"Director": {
+		"Name": "Makoto Shinkai",
+		"Bio": "Shinkai is a Japanese film maker and animator who is known for incorporating stunning life-like scense with his mastery in environmental lighting.",
+		"Birth": "1973",
+		"Death": "Present"
+	},
+	"ImagePath": "your_name.jpg",
+	"Featured": false,
+	"Bio": "Shinkai is a Japanese film maker and animator who is famous for animating stunning life-like scenes that incorporate stellar environmental lighting."
+}
+{
+	"_id": {
+		"$oid": "63896412031ec39641552a36"
+	},
+	"Title": "Spirited Away",
+	"Description": "The movie tells the story of Chihiro, a young girl on a mission to rescue her family from the evil witch Yubaba, who turned them into pigs.",
+	"Genre": {
+		"Name": "Adventure",
+		"Description": "A story where the protagonist goes on an epic journey and faces obstacles in the way of their mission. These films also give the viewer a feeling of excitement."
+	},
+	"Director": {
+		"Name": "Hayao Miyazaki",
+		"Bio": "Miyazaki is a Japanese animator and director who is also a co-founder of Studio Ghibli. He is internationally known for his exceptional sotry-telling in his works.",
+		"Birth": "1941",
+		"Death": "Present"
+	},
+	"ImagePath": "spirited_away.jpg",
+	"Featured": false
+}
+{
+	"_id": {
+		"$oid": "638966bd031ec39641552a37"
+	},
+	"Title": "A Silent Voice",
+	"Description": "This follows a moving story of Shoya Ishida, a school bully, and Shoko Nishimiya, a young girl with a hearing disability. Their story begins in sixth grade when Shoko transfer's to Shoya's elemnetary school and quickly finds herself bullied and isolated due to her hearing disability.",
+	"Genre": {
+		"Name": "Romance",
+		"Description": "Romance drama typically refers to a ficitonal story that focuses on the romantic relationship of two characters."
+	},
+	"Director": {
+		"Name": "Maoko Yamada",
+		"Bio": "Yamada is a Japanese animator/director who is known for her time at Kyoto Animation where she directed anime series K-On!",
+		"Birth": "1984",
+		"Death": "Present"
+	},
+	"ImagePath": "a_silent_voice.jpg",
+	"featured": false
+}
+{
+	"_id": {
+		"$oid": "6389698c031ec39641552a38"
+	},
+	"Description": "This is a story about the infamous wizard Howl, and a cursed hatmaker named Sophie. Sophie Hatter is a pretty average girl whose been left to maintain her family's hat shop. However, she gets cursed one day by the Witch of the Waste and is turned into an old woman.",
+	"Genre": {
+		"Name": "Adventure",
+		"Description": "A story where the protagonist goes on an epic journey and faces obstacles in the way of their mission. These films also give the viewer a feeling of excitement."
+	},
+	"Director": {
+		"Name": "Hayao Miyazaki",
+		"Bio": "Miyazaki is a Japanese animator and director who is also a co-founder of Studio Ghibli. He is internationally known for his exceptional story-telling in his works.",
+		"Birth": "1941",
+		"Death": "Present"
+	},
+	"ImagePath": "howls_moving_castle.jpg",
+	"Featured": false,
+	"Title": "Howl's Moving Castle"
+}
+{
+	"_id": {
+		"$oid": "63896b15031ec39641552a39"
+	},
+	"Description": "Featuring 3 stories in 3 different Chinese cities, this anime is a sensitively handled triptych exploring the bittersweet understanding of adulthood when confronting the fragility of childhood affections.",
+	"Genre": {
+		"Name": "Romance",
+		"Description": "Romance drama typically refers to a fictional story that focuses on the romantic relationship of two characters."
+	},
+	"Director": {
+		"Name": "Yoshitaka Takeuchi",
+		"Bio": "Takeuchi is a Japanese animator and director who is known for his work in visual effects.",
+		"Birth": "1985",
+		"Death": "Present"
+	},
+	"ImagePath": "flavors_of_youth.jpg",
+	"Featured": false,
+	"Title": "Flavors of Youth"
+}
+{
+	"_id": {
+		"$oid": "6389703c031ec39641552a3a"
+	},
+	"Description": "It depicts a highschool boy who runs away from his rural home to Tokyo and befriends an orphan girl who has the ability to control the weather.",
+	"Genre": {
+		"Name": "Makoto Shinkai",
+		"Bio": "Shinkai is a Japanese film maker and animator who is known for incorporating stunning life-like scenes with his matery in environmental lighting.",
+		"Birth": "1973",
+		"Death": "Present"
+	},
+	"ImagePath": "weathering_with_you.jpg",
+	"Featured": false,
+	"Title": "Weathering With You"
+}
+{
+	"_id": {
+		"$oid": "638971fe031ec39641552a3b"
+	},
+	"Description": "The daughter of a masterful wizard and a sea goddess, Ponyo uses her father's magic to transform herself into a young girl and quickly falls in love with Sosuke, but the use of such powerful sorcery causes a dangerous imbalance in the world.",
+	"Genre": {
+		"Name": "Adventure",
+		"Description": "A story where the protagonist goes on an epic journey and faces obstacles in the way of their mission. These films also give the viewer a feeling of excitement."
+	},
+	"Director": {
+		"Name": "Hayao Miyazaka",
+		"Bio": "Miyazaki is a Japanese animator and director who is also a co-founder of Studio Ghibli. He is internationally known for his exceptional story-telling in his works.",
+		"Birth": "1941",
+		"Death": "Present"
+	},
+	"ImagePath": "ponyo.jpg",
+	"Featured": true,
+	"Title": "Ponyo"
+}
+{
+	"_id": {
+		"$oid": "638973c9031ec39641552a3c"
+	},
+	"Description": "A young witch, on her mandatory year of independent life, finds fitting into a new community difficult while she supports herself by running an air courier service. This is a story of a young witch, named Kiki who is now 13 years old.",
+	"Genre": {
+		"Name": "Adventure",
+		"Description": "A story where the protagonist goes on an epic journey and faces obstackes in the way of their mission. These films also give the viewer a feeling of excitement."
+	},
+	"Director": {
+		"Name": "Hayao Miyazaki",
+		"Bio": "Miyazaki is a Japanese animator and director who is also a co-founder of Studio Ghibli. He is internationally knwon for his exceptional story-telling in his works.",
+		"Birth": "1941",
+		"Death": "Present"
+	},
+	"ImagePath": "kiki_delivery_service.jpg",
+	"Featured": true,
+	"Title": "Kiki's Delivery Service"
+}
+{
+	"_id": {
+		"$oid": "638974dd031ec39641552a3d"
+	},
+	"Description": "Perfect Blue is the story of a retired pop singer-turned actress, Mima, as her sense of reality starts to shake as she is stalked by an obsessed fan while being haunted from reflections of her past.",
+	"Genre": {
+		"Name": "Thriller",
+		"Description": "Thrillers have the tendency to keep it's viewers on their toes. These films often elicit feelings of suspense, excitement, and anxiety."
+	},
+	"Director": {
+		"Name": "Satoshi Kon",
+		"Bio": "Satoshi Kon is a Japanese film maker and animator who was born in Sapporo, Hokkaido and is a member of the Japanese Animation Creators Association.",
+		"Birth": "1963",
+		"Death": "Present"
+	},
+	"ImagePath": "perfect_blue.jpg",
+	"Featured": true,
+	"Title": "Perfect Blue"
+}
+{
+	"_id": {
+		"$oid": "6389775f031ec39641552a3e"
+	},
+	"Description": "In 1988 the Japanese government drops an atomic bomb on Tokyo after ESP experiments on children go awry. The story takes place 31 years later in 2019 of the aftermath.",
+	"Genre": {
+		"Name": "Sci-fi",
+		"Description": "This fictional genre typically deals with futuristic concepts such as advanced science/technology, space exploration, and time travel."
+	},
+	"Director": {
+		"Name": "Katsuhiro Otomo",
+		"Bio": "Otomo is a Japanese film maker and animator who is most known for his film Akira in 1988.",
+		"Birth": "1954",
+		"Death": "Present"
+	},
+	"ImagePath": "akira.jpg",
+	"Featured": true,
+	"Title": "Akira"
+}
