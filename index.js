@@ -4,11 +4,6 @@ const express = require('express'),
   uuid = require('uuid');
   morgan = require('morgan');
 
-app.use(bodyParser.json()); 
-app.use(bodyParser.urlencoded({extended: true}));
-
-
-
 //Integrating Mongoose with a REST API
 const mongoose = require('mongoose');
 const { restart } = require('nodemon');
@@ -16,6 +11,17 @@ const Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
+
+app.use(express.static('public')); //Automatically route request to send back response with a file in the /Public root folder
+// setup the logger in terminal
+app.use(morgan('common'));  
+
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({extended: true}));
+
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
 
 mongoose.connect('mongodb://127.0.0.1/AnimeFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -243,18 +249,13 @@ let movies = [
 ]
 */
 
-app.use(express.static('public')); //Automatically route request to send back response with a file in the /Public root folder
-// setup the logger in terminal
-app.use(morgan('common'));
-
-
 
 app.get('/', (req, res) => {
   res.send('Welcome to AnimeFlix!');
 });
 
 // Get list of all users
-app.get('/users', (req, res) => {
+app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.find()
     .then((users) => {
       res.status(200).json(users);
@@ -267,7 +268,7 @@ app.get('/users', (req, res) => {
 });
 
 // Get a user by username
-app.get('/users/:Username', (req, res) => {
+app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
   //In order to “READ” a user by their username, you need to pass, as a parameter, an object that contains the criteria by which you want to find that user, which, in this case, is their username
   Users.findOne({ Username: req.params.Username })
     //Send a response back to the client with the user data (document) that was just read
@@ -282,7 +283,7 @@ app.get('/users/:Username', (req, res) => {
 });
 
 // Get list of all movies
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(200).json(movies);
@@ -295,7 +296,7 @@ app.get('/movies', (req, res) => {
 });
 
 // Get a movie by movie title
-app.get('/movies/:Title', (req, res) => {
+app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
   //In order to “READ” a movie by it's title, you need to pass, as a parameter, an object that contains the criteria by which you want to find that movie, which, in this case, is the title
   Movies.findOne({ Title: req.params.Title })
     //Send a response back to the client with the user data (document) that was just read
@@ -310,7 +311,7 @@ app.get('/movies/:Title', (req, res) => {
 });
 
 // Get genre by name
-app.get('/movies/genre/:genreName', (req, res) => {
+app.get('/movies/genre/:genreName', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.findOne({'Genre.Name': req.params.genreName})
   .then((movie) => {
     res.status(200).json(movie.Genre);
@@ -322,7 +323,7 @@ app.get('/movies/genre/:genreName', (req, res) => {
 });
 
 // Get a director data by their name
-app.get('/movies/directors/:directorName', (req, res) => {
+app.get('/movies/directors/:directorName', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.findOne({'Director.Name': req.params.directorName})
   .then((movie) => {
     res.status(200).json(movie.Director);
@@ -377,7 +378,7 @@ app.post('/users', (req, res) => {
 });
 
 // Allow users to update their user info
-app.put('/users/:Username', (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
   //updating users with a certain username and using $set to specify which fields in the user document is being updated
   Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
@@ -400,7 +401,7 @@ app.put('/users/:Username', (req, res) => {
 });
 
 // Add a movie to a user's list of favorites
-app.post('/users/:Username/movies/:MovieID', (req, res) => {
+app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $push: { FavoriteMovies: req.params.MovieID }
    },
@@ -416,7 +417,7 @@ app.post('/users/:Username/movies/:MovieID', (req, res) => {
 });
 
 // Delete a movie from a user's list of favorites
-app.delete('/users/:Username/movies/:MovieID', (req, res) => {
+app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $pull: { FavoriteMovies: req.params.MovieID }
    },
@@ -432,7 +433,7 @@ app.delete('/users/:Username/movies/:MovieID', (req, res) => {
 });
 
 //Allow existing users to delete their account
-app.delete('/users/:Username', (req, res) => {
+app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
