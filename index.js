@@ -4,6 +4,7 @@ const express = require('express'),
   uuid = require('uuid');
   morgan = require('morgan');
 
+
 //Integrating Mongoose with a REST API
 const mongoose = require('mongoose');
 const { restart } = require('nodemon');
@@ -18,6 +19,23 @@ app.use(morgan('common'));
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
+
+const { check, validationResult } = require('express-validator');
+
+const cors = require('cors');
+
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 let auth = require('./auth')(app);
 const passport = require('passport');
@@ -119,7 +137,23 @@ app.get('/movies/directors/:directorName', passport.authenticate('jwt', { sessio
   Email: String,
   Birthday: Date
 }*/
-app.post('/users', (req, res) => {
+app.post('/users',  
+  [
+    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+  ], (req, res) => {
+
+  // check the validation object for errors
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+  
+  //Hash any password entered by the user when registering before storing it in the MongoDB database
+  let hashedPassword = Users.hashPassword(req.body.Password); 
   //check if a user with the username provided by the client already exists and querying the “Users” model using Mongoose
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
@@ -133,7 +167,7 @@ app.post('/users', (req, res) => {
             //req.body is the request that the user sends. This collects the info from the HTTP request body, uses Mongoose to populate a user document, then add it to the database
             //Mongoose is translating Node.js code into a MongoDB command that runs behind the scenes to insert a record into your “Users” collection
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
