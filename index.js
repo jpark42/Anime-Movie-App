@@ -41,8 +41,10 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-mongoose.connect('mongodb://127.0.0.1/AnimeFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect('mongodb://127.0.0.1/AnimeFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect('mongodb+srv://animeFlixDBadmin:Temple42726!@animeflixdb.6tquhq9.mongodb.net/AnimeFlixDB?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
 
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.get('/', (req, res) => {
   res.send('Welcome to AnimeFlix!');
