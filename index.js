@@ -1,8 +1,8 @@
-const express = require('express'),
-  app = express();
-  bodyParser = require('body-parser');
-  uuid = require('uuid');
-  morgan = require('morgan');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const uuid = require('uuid');
+const morgan = require('morgan');
 
 
 //Integrating Mongoose with a REST API
@@ -75,58 +75,6 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (r
       console.error(err);
       res.status(500).send('Error: ' + err);
     });
-});
-
-// Get list of all movies
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Movies.find()
-    .then((movies) => {
-      res.status(200).json(movies);
-    })
-    .catch((err) => {
-      console.error(err);
-      //Catch-all error-handling function that sends back the message of what error occurred
-      res.status(500).send('Error: ' + err);
-    });
-});
-
-// Get a movie by movie title
-app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
-  //In order to “READ” a movie by it's title, you need to pass, as a parameter, an object that contains the criteria by which you want to find that movie, which, in this case, is the title
-  Movies.findOne({ Title: req.params.Title })
-    //Send a response back to the client with the user data (document) that was just read
-    //The parameter for this callback is named “users”, but it could be called anything
-    .then((movie) => {
-      res.status(200).json(movie);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
-
-// Get genre by name
-app.get('/movies/genre/:genreName', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Movies.findOne({'Genre.Name': req.params.genreName})
-  .then((movie) => {
-    res.status(200).json(movie.Genre);
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(500).send('Error: + err');
-  });
-});
-
-// Get a director data by their name
-app.get('/movies/directors/:directorName', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Movies.findOne({'Director.Name': req.params.directorName})
-  .then((movie) => {
-    res.status(200).json(movie.Director);
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(500).send('Error: + err');
-  });
 });
 
 // Allow new user to register
@@ -257,6 +205,59 @@ app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
       console.error(err);
       res.status(500).send('Error: ' + err);
     });
+});
+
+
+// Get list of all movies
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Movies.find()
+    .then((movies) => {
+      res.status(200).json(movies);
+    })
+    .catch((err) => {
+      console.error(err);
+      //Catch-all error-handling function that sends back the message of what error occurred
+      res.status(500).send('Error: ' + err);
+    });
+});
+
+// Get a movie by movie title
+app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
+  //In order to “READ” a movie by it's title, you need to pass, as a parameter, an object that contains the criteria by which you want to find that movie, which, in this case, is the title
+  Movies.findOne({ Title: req.params.Title })
+    //Send a response back to the client with the user data (document) that was just read
+    //The parameter for this callback is named “users”, but it could be called anything
+    .then((movie) => {
+      res.status(200).json(movie);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
+
+// Get genre by name
+app.get('/movies/genre/:genreName', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Movies.findOne({'Genre.Name': req.params.genreName})
+  .then((movie) => {
+    res.status(200).json(movie.Genre);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send('Error: + err');
+  });
+});
+
+// Get a director data by their name
+app.get('/movies/directors/:directorName', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Movies.findOne({'Director.Name': req.params.directorName})
+  .then((movie) => {
+    res.status(200).json(movie.Director);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send('Error: + err');
+  });
 });
 
 // Error

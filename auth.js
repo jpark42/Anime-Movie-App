@@ -1,4 +1,4 @@
-const jwtSecret = 'your_jwt_secret'; // This has to be the same key used in the JWTStrategy
+const jwtSecret = 'random123'; // This has to be the same key used in the JWTStrategy
 
 const jwt = require('jsonwebtoken'),
   passport = require('passport');
