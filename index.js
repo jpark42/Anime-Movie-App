@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 });
 
 // Get list of all users
-app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/users', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   Users.find()
     .then((users) => {
       res.status(200).json(users);
@@ -63,7 +63,7 @@ app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) =
 });
 
 // Get a user by username
-app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/users/:Username', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   //In order to “READ” a user by their username, you need to pass, as a parameter, an object that contains the criteria by which you want to find that user, which, in this case, is their username
   Users.findOne({ Username: req.params.Username })
     //Send a response back to the client with the user data (document) that was just read
@@ -137,7 +137,7 @@ app.post('/users',
 });
 
 // Allow users to update their user info
-app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.put('/users/:Username', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   //updating users with a certain username and using $set to specify which fields in the user document is being updated
   Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
@@ -160,7 +160,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 });
 
 // Add a movie to a user's list of favorites
-app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.post('/users/:Username/movies/:MovieID', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $push: { FavoriteMovies: req.params.MovieID }
    },
@@ -176,7 +176,7 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
 });
 
 // Delete a movie from a user's list of favorites
-app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.delete('/users/:Username/movies/:MovieID', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $pull: { FavoriteMovies: req.params.MovieID }
    },
@@ -192,7 +192,7 @@ app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { se
 });
 
 //Allow existing users to delete their account
-app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.delete('/users/:Username', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
@@ -222,7 +222,7 @@ app.get('/movies', /*passport.authenticate('jwt', { session: false }),*/ (req, r
 });
 
 // Get a movie by movie title
-app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies/:Title', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   //In order to “READ” a movie by it's title, you need to pass, as a parameter, an object that contains the criteria by which you want to find that movie, which, in this case, is the title
   Movies.findOne({ Title: req.params.Title })
     //Send a response back to the client with the user data (document) that was just read
@@ -237,7 +237,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req
 });
 
 // Get genre by name
-app.get('/movies/genre/:genreName', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies/genre/:genreName', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   Movies.findOne({'Genre.Name': req.params.genreName})
   .then((movie) => {
     res.status(200).json(movie.Genre);
@@ -249,7 +249,7 @@ app.get('/movies/genre/:genreName', passport.authenticate('jwt', { session: fals
 });
 
 // Get a director data by their name
-app.get('/movies/directors/:directorName', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies/directors/:directorName', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   Movies.findOne({'Director.Name': req.params.directorName})
   .then((movie) => {
     res.status(200).json(movie.Director);
