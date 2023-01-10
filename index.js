@@ -209,7 +209,7 @@ app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
 
 
 // Get list of all movies
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(200).json(movies);
@@ -222,7 +222,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
 });
 
 // Get a movie by movie title
-app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies/:Title', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   //In order to “READ” a movie by it's title, you need to pass, as a parameter, an object that contains the criteria by which you want to find that movie, which, in this case, is the title
   Movies.findOne({ Title: req.params.Title })
     //Send a response back to the client with the user data (document) that was just read
@@ -237,7 +237,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req
 });
 
 // Get genre by name
-app.get('/movies/genre/:genreName', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies/genre/:genreName', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   Movies.findOne({'Genre.Name': req.params.genreName})
   .then((movie) => {
     res.status(200).json(movie.Genre);
@@ -249,7 +249,7 @@ app.get('/movies/genre/:genreName', passport.authenticate('jwt', { session: fals
 });
 
 // Get a director data by their name
-app.get('/movies/directors/:directorName', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies/directors/:directorName', /*passport.authenticate('jwt', { session: false }),*/ (req, res) => {
   Movies.findOne({'Director.Name': req.params.directorName})
   .then((movie) => {
     res.status(200).json(movie.Director);
