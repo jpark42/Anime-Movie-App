@@ -25,16 +25,20 @@ const { check, validationResult } = require('express-validator');
 
 const cors = require('cors');
 
-// app.use(cors());
+app.use(cors({
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+  origin: '*'
+}));
 // Add Access Control Allow Origin headers
-app.use((req, res, next) => {
+
+/* app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*", "https://localhost:1234/");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
-});
+});*/
 
 
 /*let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/'];
