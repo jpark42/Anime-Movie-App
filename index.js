@@ -20,12 +20,13 @@ app.use(morgan('common'));
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
 
+
 const { check, validationResult } = require('express-validator');
 
 const cors = require('cors');
-
+app.use(cors());
 // Add Access Control Allow Origin headers
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*", "https://localhost:1234/");
   res.header(
     "Access-Control-Allow-Headers",
@@ -33,10 +34,10 @@ app.use((req, res, next) => {
   );
   next();
 });
+*/
 
-//app.use(cors());
+
 /*let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/'];
-
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
@@ -53,9 +54,9 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-//mongoose.connect('mongodb://127.0.0.1/AnimeFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://127.0.0.1/AnimeFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.get('/', (req, res) => {
   res.send('Welcome to AnimeFlix!');
@@ -70,7 +71,7 @@ app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) =
     .catch((err) => {
       console.error(err);
       //Catch-all error-handling function that sends back the message of what error occurred
-      res.status(500).send('Error: ' + err);
+      res.status(500).send({error: err});
     });
 });
 
@@ -85,7 +86,7 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (r
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send('Error: ' + err);
+      res.status(500).send({error: err});
     });
 });
 
@@ -138,13 +139,13 @@ app.post('/users',
         .catch((error) => {
           //Catch-all error-handling function if any required parameters detailed in the "users" model are not satisfied
           console.error(error);
-          res.status(500).send('Error: ' + error);
+          res.status(500).send({error: error});
         })
       }
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).send('Error: ' + error);
+      res.status(500).send({error: error});
     });
 });
 
@@ -164,7 +165,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (r
     //displays error or updated user 
     if(err) {
       console.error(err);
-      res.status(500).send('Error: ' + err);
+      res.status(500).send({error: err});
     } else {
       res.status(200).json(updatedUser);
     }
@@ -180,7 +181,7 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
   (err, updatedUser) => {
     if (err) {
       console.error(err);
-      res.status(500).send('Error: ' + err);
+      res.status(500).send({error: err});
     } else {
       res.status(200).json(updatedUser);
     }
@@ -196,7 +197,7 @@ app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { se
   (err, updatedUser) => {
     if (err) {
       console.error(err);
-      res.status(500).send('Error: ' + err);
+      res.status(500).send({error: err});
     } else {
       res.status(200).json(updatedUser);
     }
@@ -215,7 +216,7 @@ app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send('Error: ' + err);
+      res.status(500).send({error: err});
     });
 });
 
@@ -229,7 +230,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
     .catch((err) => {
       console.error(err);
       //Catch-all error-handling function that sends back the message of what error occurred
-      res.status(500).send('Error: ' + err);
+      res.status(500).send({error: err});
     });
 });
 
@@ -244,7 +245,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send('Error: ' + err);
+      res.status(500).send({error: err});
     });
 });
 

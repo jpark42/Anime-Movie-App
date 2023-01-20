@@ -43,7 +43,7 @@ passport.use(new JWTStrategy({
   //JWT is extracted from the header of the HTTP request
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
   // “Decret” key to verifies signature of the JWT. This verifies that the sender of the JWT (the client) is who it says it is—and also that the JWT hasn’t been altered
-  secretOrKey: 'your_jwt_secret'
+  secretOrKey: 'random123'
 }, (jwtPayload, callback) => {
   return Users.findById(jwtPayload._id)
     .then((user) => {
