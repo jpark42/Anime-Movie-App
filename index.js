@@ -24,9 +24,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 const { check, validationResult } = require('express-validator');
 
 const cors = require('cors');
-app.use(cors());
+
+// app.use(cors());
 // Add Access Control Allow Origin headers
-/* app.use((req, res, next) => {
+app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*", "https://localhost:1234/");
   res.header(
     "Access-Control-Allow-Headers",
@@ -34,7 +35,6 @@ app.use(cors());
   );
   next();
 });
-*/
 
 
 /*let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/'];
