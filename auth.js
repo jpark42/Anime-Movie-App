@@ -17,10 +17,10 @@ let generateJWTToken = (user) => {
 /* POST login. */
 module.exports = (router) => {
   router.post('/login', (req, res) => {
-    passport.authenticate('jwt', { session: false }, (error, user, info) => { //try changing local to jwt?
+    passport.authenticate('local', { session: false }, (error, user, info) => { //try changing local to jwt?
       if (error || !user) {
         return res.status(400).json({
-          message: 'Something is not right',
+          message: 'Something is not right!',
           user: user,
           error
         });
@@ -29,6 +29,7 @@ module.exports = (router) => {
         if (error) {
           res.send(error);
         }
+        // if user exists, generate JWT token 
         let token = generateJWTToken(user.toJSON());
         return res.json({ user, token });
       });

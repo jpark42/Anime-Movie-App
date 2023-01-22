@@ -1,28 +1,20 @@
+// require Express, Morgan middleware
 const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const uuid = require('uuid');
 const morgan = require('morgan');
+const app = express();
 
+const uuid = require('uuid');
 
-//Integrating Mongoose with a REST API
-const mongoose = require('mongoose');
-const { restart } = require('nodemon');
-const Models = require('./models.js');
-
-const Movies = Models.Movie;
-const Users = Models.User;
-
-app.use(express.static('public')); //Automatically route request to send back response with a file in the /Public root folder
-// setup the logger in terminal
-app.use(morgan('common'));  
+// bodyparser
+const bodyParser = require('body-parser');
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
 
+// setup the logger in terminal by using morgan
+app.use(morgan('common'));  
 
-const { check, validationResult } = require('express-validator');
-
+// CORS
 const cors = require('cors');
 
 app.use(cors({
@@ -54,16 +46,41 @@ app.use(cors({
 }));
 */
 
-let auth = require('./auth')(app);
+// importing auth.js file, passport module & passport.js
+let auth = require('./auth')(app); //auth not being used???
+// importing Passport module and passport.js file
 const passport = require('passport');
 require('./passport');
 
-// mongoose.connect('mongodb://127.0.0.1/AnimeFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+//Integrating Mongoose with a REST API
+const mongoose = require('mongoose');
+const { restart } = require('nodemon');
+const Models = require('./models.js');
 
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+const Movies = Models.Movie;
+const Users = Models.User;
+
+// express validator for server-side validation
+const { check, validationResult } = require('express-validator');
+
+
+// allows Mongoose to connect to AnimeFlixDB for CRUD operations on docs within REST API
+mongoose.connect('mongodb://127.0.0.1/AnimeFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+
+// connects AnimeFlixDB on Atlas to Heroku API
+//mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+
+// automatically route request to send back response with a file in the /Public root folder. express.static to serve documentation.html from public folder
+app.use(express.static('public')); 
+
+/*
+************** CRUD REST API COMMANDS AND ENDPOINT DEFINITIONS ********************
+*/
+
 
 app.get('/', (req, res) => {
-  res.send('Welcome to AnimeFlix!');
+  res.send('Sit back, relax, eat snacks. Welcome to AnimeFlix!');
 });
 
 // Get list of all users
