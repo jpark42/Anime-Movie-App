@@ -47,7 +47,8 @@ app.use(cors({
 */
 
 // importing auth.js file, passport module & passport.js
-let auth = require('./auth')(app); //auth not being used???
+const auth = require('./auth'); //auth not being used???
+auth(app);
 // importing Passport module and passport.js file
 const passport = require('passport');
 require('./passport');
@@ -137,6 +138,8 @@ app.post('/users',
   
   //Hash any password entered by the user when registering before storing it in the MongoDB database
   let hashedPassword = Users.hashPassword(req.body.Password); 
+  console.log(hashedPassword)
+  console.log(req.body)
   //check if a user with the username provided by the client already exists and querying the “Users” model using Mongoose
   Users.findOne({ Username: req.body.Username })
     .then((user) => {

@@ -14,7 +14,7 @@ passport.use(new LocalStrategy({
   usernameField: 'Username',
   passwordField: 'Password'
 }, (username, password, callback) => {
-  console.log(username + '  ' + password);
+  console.log(username + ' / ' + password);
   // Using Mongoose model to check DB for user with the same name
   Users.findOne({ Username: username }, (error, user) => {
     // If there is error, we are logging it, error message is passed to callback function
@@ -22,6 +22,7 @@ passport.use(new LocalStrategy({
       console.log(error);
       return callback(error);
     }
+    console.log(user);
     // If there is no such user in Mongoose DB error message is passed to callback function
     if (!user) {
       console.log('incorrect username');
