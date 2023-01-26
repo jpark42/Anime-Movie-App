@@ -66,10 +66,10 @@ const { check, validationResult } = require('express-validator');
 
 
 // allows Mongoose to connect to AnimeFlixDB for CRUD operations on docs within REST API
-mongoose.connect('mongodb://127.0.0.1/AnimeFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+// mongoose.connect('mongodb://127.0.0.1/AnimeFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
 // connects AnimeFlixDB on Atlas to Heroku API
-//mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // automatically route request to send back response with a file in the /Public root folder. express.static to serve documentation.html from public folder
