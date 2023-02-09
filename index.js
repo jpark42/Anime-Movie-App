@@ -145,7 +145,7 @@ app.post('/users',
     .then((user) => {
       if (user) {
         //if user already exists, display the following message
-        return res.status(400).send('Username or email already exists');
+        return res.status(400).json({ error: 'Username or email already exists'});
       } else {
         //f the user doesn’t exist, you use Mongoose’s create command to “CREATE” the new user
         Users
@@ -163,7 +163,7 @@ app.post('/users',
         .catch((error) => {
           //Catch-all error-handling function if any required parameters detailed in the "users" model are not satisfied
           console.error(error);
-          res.status(500).send({error: error});
+          res.status(500).json({error: error});
         })
       }
     })
