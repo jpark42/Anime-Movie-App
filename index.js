@@ -141,11 +141,11 @@ app.post('/users',
   console.log(hashedPassword)
   console.log(req.body)
   //check if a user with the username provided by the client already exists and querying the “Users” model using Mongoose
-  Users.findOne({ Username: req.body.Username })
+  Users.findOne().or([{ Username: req.body.Username }, { Email: req.body.Email }])
     .then((user) => {
       if (user) {
         //if user already exists, display the following message
-        return res.status(400).send(req.body.Username + ' already exists');
+        return res.status(400).send('Username or email already exists');
       } else {
         //f the user doesn’t exist, you use Mongoose’s create command to “CREATE” the new user
         Users
