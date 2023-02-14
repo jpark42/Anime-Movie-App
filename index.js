@@ -17,11 +17,13 @@ app.use(morgan('common'));
 // CORS
 const cors = require('cors');
 
+/*
 app.use(cors({
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
   origin: '*'
 }));
 // Add Access Control Allow Origin headers
+*/
 
 /* app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*", "https://localhost:1234/");
@@ -33,7 +35,8 @@ app.use(cors({
 });*/
 
 
-/*let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/', 'https://animeflixapp.netlify.app/'];
+
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
@@ -44,7 +47,6 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-*/
 
 // importing auth.js file, passport module & passport.js
 const auth = require('./auth'); //auth not being used???
@@ -159,7 +161,7 @@ app.post('/users',
           })
           //callback function takes the document you just added as a parameter. Here, this new document is given the name “user”
           //Within this callback, you then send a response back to the client that contains both a status code and the document (called “user”) letting them know their request has been completed
-          .then((user) =>{res.status(201).json(user) })
+          .then((user) =>{res.status(201).json(user) }) //return created user as json object 
         .catch((error) => {
           //Catch-all error-handling function if any required parameters detailed in the "users" model are not satisfied
           console.error(error);
