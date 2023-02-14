@@ -17,13 +17,13 @@ app.use(morgan('common'));
 // CORS
 const cors = require('cors');
 
-/*
+
 app.use(cors({
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
   origin: '*'
 }));
 // Add Access Control Allow Origin headers
-*/
+
 
 /* app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*", "https://localhost:1234/");
@@ -34,7 +34,7 @@ app.use(cors({
   next();
 });*/
 
-
+/*
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/', 'https://animeflixapp.netlify.app/'];
 
 app.use(cors({
@@ -47,6 +47,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+*/
 
 // importing auth.js file, passport module & passport.js
 const auth = require('./auth'); //auth not being used???
